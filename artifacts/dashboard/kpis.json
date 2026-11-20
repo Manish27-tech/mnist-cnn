@@ -1,0 +1,46 @@
+{
+  "accuracy": 0.9822,
+  "macro_f1": 0.9821512930898544,
+  "parameters": 94186,
+  "test_rows": 10000,
+  "epochs_run": 3,
+  "training_seconds": 265.08,
+  "temperature": 0.5146373862048043,
+  "ece_before": 0.06573633033037181,
+  "ece_after": 0.0040138732925057,
+  "clean_accuracy": 0.982,
+  "worst_corruption": "noise",
+  "worst_severity": 0.3,
+  "worst_accuracy": 0.101,
+  "worst_class": "nine",
+  "best_class": "one",
+  "top_confusion": {
+    "true_index": 4,
+    "true_name": "four",
+    "predicted_index": 9,
+    "predicted_name": "nine",
+    "count": 20
+  },
+  "selective_90": {
+    "threshold": 0.9,
+    "coverage": 0.946,
+    "accuracy": 0.9974,
+    "count": 9460
+  },
+  "class_names": [
+    "zero",
+    "one",
+    "two",
+    "three",
+    "four",
+    "five",
+    "six",
+    "seven",
+    "eight",
+    "nine"
+  ],
+  "seed": 42,
+  "dataset_source": "http://yann.lecun.com/exdb/mnist/",
+  "architecture": "MNISTCNN (3 conv blocks)",
+  "checkpoint_bytes": 385011
+}
