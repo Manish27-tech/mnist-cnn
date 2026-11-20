@@ -1,0 +1,8 @@
+cff-version: 1.2.0
+message: "If you use this project, please cite it as below."
+title: "MNIST CNN: a compact classifier with calibration and Grad-CAM"
+authors:
+  - name: "Manish27-tech"
+date-released: 2026-11-20
+url: "https://github.com/Manish27-tech/mnist-cnn"
+license: MIT
