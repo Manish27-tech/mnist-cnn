@@ -3,9 +3,9 @@
 from __future__ import annotations
 
 import json
-from pathlib import Path
 
 import matplotlib
+
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import numpy as np
@@ -14,10 +14,16 @@ import torch
 
 from mnistvision import config
 from mnistvision.data import build_loaders, load_dataset
-from mnistvision.evaluate import (build_prediction_frame, calibration_summary,
-                                  classification_summary, collect_logits,
-                                  confidence_buckets, expected_calibration_error,
-                                  selective_accuracy, softmax_numpy, temperature_scale)
+from mnistvision.evaluate import (
+    build_prediction_frame,
+    calibration_summary,
+    classification_summary,
+    collect_logits,
+    confidence_buckets,
+    selective_accuracy,
+    softmax_numpy,
+    temperature_scale,
+)
 from mnistvision.explain import GradCAM, overlay
 from mnistvision.model import count_parameters, load_checkpoint
 from mnistvision.robustness import robustness_sweep

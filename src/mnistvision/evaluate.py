@@ -49,7 +49,8 @@ def expected_calibration_error(probs, targets, bins=15):
         n = int(mask.sum())
         acc = float(correct[mask].mean()) if n else 0.0
         c = float(conf[mask].mean()) if n else (lo + hi) / 2
-        out.append({"bin_lower": lo, "bin_upper": hi, "count": n, "accuracy": acc, "confidence": c, "gap": abs(acc - c)})
+        out.append({"bin_lower": lo, "bin_upper": hi, "count": n, "accuracy": acc,
+                    "confidence": c, "gap": abs(acc - c)})
         if n:
             ece += (n / len(targets)) * abs(acc - c)
     mce = max((abs(b["accuracy"] - b["confidence"]) for b in out if b["count"]), default=0.0)
@@ -104,7 +105,10 @@ def confidence_buckets(predictions, bins=10):
     frame = predictions.frame
     for i in range(bins):
         lo, hi = i / bins, (i + 1) / bins
-        mask = (frame["confidence"] >= lo) & (frame["confidence"] <= hi) if i == 0 else (frame["confidence"] > lo) & (frame["confidence"] <= hi)
+        if i == 0:
+            mask = (frame["confidence"] >= lo) & (frame["confidence"] <= hi)
+        else:
+            mask = (frame["confidence"] > lo) & (frame["confidence"] <= hi)
         kept = frame[mask]
         rows.append({"lower": lo, "upper": hi, "count": len(kept),
                      "accuracy": float(kept["correct"].mean()) if len(kept) else 0.0})
@@ -113,9 +117,13 @@ def confidence_buckets(predictions, bins=10):
 
 def selective_accuracy(predictions, thresholds=(0.5, 0.7, 0.8, 0.9, 0.95, 0.99)):
     frame = predictions.frame
-    return [{"threshold": t, "coverage": round(len(frame[frame["confidence"] >= t]) / len(frame), 4),
-             "accuracy": round(float(frame[frame["confidence"] >= t]["correct"].mean()), 4) if (frame["confidence"] >= t).any() else 0.0,
-             "count": int((frame["confidence"] >= t).sum())} for t in thresholds]
+    rows = []
+    for t in thresholds:
+        kept = frame[frame["confidence"] >= t]
+        rows.append({"threshold": t, "coverage": round(len(kept) / len(frame), 4),
+                     "accuracy": round(float(kept["correct"].mean()), 4) if len(kept) else 0.0,
+                     "count": int(len(kept))})
+    return rows
 
 
 def calibration_summary(logits, targets, temperature):

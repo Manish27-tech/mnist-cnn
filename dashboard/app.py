@@ -10,10 +10,10 @@ for candidate in (ROOT, ROOT / "src"):
     if str(candidate) not in sys.path:
         sys.path.insert(0, str(candidate))
 
-import streamlit as st
+import streamlit as st  # noqa: E402
 
-from dashboard import data
-from dashboard.views import about, demo, performance
+from dashboard import data  # noqa: E402
+from dashboard.views import about, demo, performance  # noqa: E402
 
 st.set_page_config(page_title="MNIST CNN", page_icon="🔢", layout="wide")
 

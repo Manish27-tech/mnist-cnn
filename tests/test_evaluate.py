@@ -4,8 +4,12 @@ from __future__ import annotations
 
 import numpy as np
 
-from mnistvision.evaluate import (build_prediction_frame, expected_calibration_error,
-                                  selective_accuracy, temperature_scale)
+from mnistvision.evaluate import (
+    build_prediction_frame,
+    expected_calibration_error,
+    selective_accuracy,
+    temperature_scale,
+)
 
 
 def test_temperature_scale_in_range():

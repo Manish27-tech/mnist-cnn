@@ -70,7 +70,12 @@ def fit(model, train_loader, val_loader, *, epochs=config.EPOCHS, checkpoint_pat
                "val_accuracy": round(vcorrect / vtotal, 4), "seconds": round(time.perf_counter() - started, 2)}
         history.append(row)
         if verbose:
-            print(f"epoch {epoch}/{epochs}  train {row['train_loss']:.4f}/{row['train_accuracy']:.4f}  val {row['val_loss']:.4f}/{row['val_accuracy']:.4f}", flush=True)
+            print(
+                f"epoch {epoch}/{epochs}  "
+                f"train {row['train_loss']:.4f}/{row['train_accuracy']:.4f}  "
+                f"val {row['val_loss']:.4f}/{row['val_accuracy']:.4f}",
+                flush=True,
+            )
         if row["val_accuracy"] > best_acc:
             best_acc = row["val_accuracy"]
             best_epoch = epoch

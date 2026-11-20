@@ -34,7 +34,6 @@ def render(feed: dict, kpis: dict) -> None:
     st.divider()
     st.subheader("Grad-CAM")
     st.caption("Warm colours show the pixels that pushed the prediction.")
-    gradcam = feed["gradcam"]
     fig = data.figure("08_gradcam.png")
     if fig:
         st.image(str(fig), width="stretch")

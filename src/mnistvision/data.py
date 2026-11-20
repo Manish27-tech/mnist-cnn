@@ -4,7 +4,8 @@ from __future__ import annotations
 
 import numpy as np
 import torch
-from torch.utils.data import DataLoader, Dataset as TorchDataset
+from torch.utils.data import DataLoader
+from torch.utils.data import Dataset as TorchDataset
 from torchvision import datasets, transforms
 
 from mnistvision import config

@@ -41,7 +41,9 @@ class GradCAM:
             score.backward(torch.ones_like(score))
             weights = grads["v"].mean(dim=(2, 3), keepdim=True)
             cam = F.relu((weights * acts["v"]).sum(1))
-            cam = F.interpolate(cam.unsqueeze(1), size=images.shape[2:], mode="bilinear", align_corners=False).squeeze(1)
+            cam = F.interpolate(
+                cam.unsqueeze(1), size=images.shape[2:], mode="bilinear", align_corners=False
+            ).squeeze(1)
             out = cam.detach().cpu().numpy()
             for i in range(len(out)):
                 c = out[i]
